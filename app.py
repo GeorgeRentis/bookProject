@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,url_for,redirect
+from flask import Flask, render_template,request,url_for,redirect, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from flask_sqlalchemy import SQLAlchemy
@@ -13,21 +13,29 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 db = SQLAlchemy(app)
 from models import Book
+BOOKS_PER_PAGE = 5
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/books',methods=["GET","POST"])
 def books():
-    return render_template('books.html',book_list = Book.query.all())
+    page = request.args.get('page', 1, type=int)
+    books = Book.query.paginate(page,BOOKS_PER_PAGE,False)
+    next_url = url_for('books', page=books.next_num) \
+        if books.has_next else None
+    prev_url = url_for('books', page=books.prev_num) \
+        if books.has_prev else None
+    return render_template('books.html',book_list = books.items,next_url = next_url, prev_url = prev_url)
 
 @app.route('/add_book',methods=["GET","POST"])
 def add_book():
     bookform = forms.BookForm()
     if bookform.validate_on_submit():
-        new_book = Book(title = bookform.title.data, author = bookform.author.data, rating = int(bookform.rating.data))
+        new_book = Book(title = bookform.title.data, author = bookform.author.data, rating = int(bookform.rating.data), genre = (bookform.genre.data))
         db.session.add(new_book)
         db.session.commit()
         return redirect(url_for("books", _external=True, _scheme='http'))

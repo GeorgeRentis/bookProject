@@ -92,3 +92,17 @@ th,td{
   border: 1px solid #ced4da;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.book-button{
+  background-color:#302F59;
+  border:0px;
+}
+
+.book-list-header a,h1{
+  display:inline-block;
+}
+
+.book-list-header a{
+  margin-bottom: .5rem;
+  margin-left:10px;
+}

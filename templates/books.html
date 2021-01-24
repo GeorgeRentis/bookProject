@@ -4,14 +4,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="book-list">
+  <div class="book-list ">
+    <div class="book-list-header">
       <h1>Book List</h1>
+      {% if prev_url %}
+        <a href="{{ prev_url }}" class="btn btn-primary book-button">Previous Books</a>
+      {% endif %}
+      {% if next_url %}
+        <a href="{{ next_url }}" class="btn btn-primary book-button">Next Books</a>
+      {% endif %}
+    </div>
       <table class="table table-striped">
           <thead>
             <tr>
               <th scope="id">Book ID</th>
               <th scope="col">Title</th>
               <th scope="col">Author</th>
+              <th scope="col">Genre</th>
               <th scope="col">Rating</th>
               <th scope="col">Actions</th>
             </tr>
@@ -22,6 +31,7 @@
               <td>{{book.id}}</td>
               <td>{{book.title}}</td>
               <td>{{book.author}}</td>
+              <td>{{book.genre}}</td>
               <td>
                 <!-- Display rating in a number of stars -->
                 {% for rating in range(0,book.rating) %} 
@@ -30,12 +40,14 @@
               </td>
               <td>
                 <!-- Redirecting to the book profile page -->
-                <a class="btn btn-primary" href={{url_for('book',book_id = book.id)}}>View</a>
+                <a class="btn btn-primary book-button" href={{url_for('book',book_id = book.id)}}>View</a>
               </td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
+
+
   </div>
   
 {% endblock %}

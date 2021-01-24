@@ -7,6 +7,7 @@ class Book(db.Model):
     title = db.Column(db.String(40),index=True,unique=True)
     author = db.Column(db.String(40),index=True,unique = False)
     rating = db.Column(db.Integer, index = True,unique = False)
+    genre = db.Column(db.Integer, index= True, unique = False)
     
     def __repr__(self):
         return "{} by {}".format(self.title,self.author)

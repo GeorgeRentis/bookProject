@@ -1,0 +1,94 @@
+body{
+  background-image: url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80]');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.banner{
+  text-align: center;
+  background-color: #E6E6F9;
+  padding: 10px;
+  font-family: 'Indie Flower', cursive;
+  border-radius:25px;
+  margin: 0 auto;
+  display: block;
+  margin-top:40px;
+  width:60%;
+}
+
+.footer{
+  text-align: center;
+  color:#FFFF;
+    background-color:#302F59;
+    padding:10px;
+    width:100%;
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+
+#my_nav{
+  background-color:#302F59;
+}
+
+#item{
+  color:#FFFF;
+}
+#brand{
+  color:#ADD8E6
+}
+
+.book-list{
+  text-align:center;
+  margin-top:30px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.table{
+ background:#FFFF;
+ border: 1px solid lightgray;
+}
+
+.add-book{
+  display: block;
+  width: 50%;
+  margin-top: 40px;
+  display: block;
+  background: #E6E6F8;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.add-book h2{
+  text-align: center;
+}
+
+.book-row{
+  border:1px solid lightgray;
+}
+
+.book-display{
+  width: auto;
+  height: auto;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.book-image{
+  width:250px;
+  height:250px;
+}
+
+th,td{
+  text-align:center
+}
+
+.rating-button{
+  border-radius: .25rem;
+  border: 1px solid #ced4da;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

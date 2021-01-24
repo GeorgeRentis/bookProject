@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="book-display">
+    <table class="table table-bordered book-display">
+	<tr>
+  	<td>
+    	<img class="book-image" src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2767&q=80">
+    </td>
+  </tr>
+  <tr class="book_row">
+  	<td>
+    	<strong>Title:</strong><br>{{book.title}}
+     </td>
+  </tr>
+  <tr class="book_row">
+  	<td>    	
+    	<strong>Author:</strong><br>{{book.author}}
+    </td>
+  </tr>
+  <tr class="book_row">
+    <td>    	
+        <a class="btn btn-primary" href={{url_for('update',book_id = book.id)}}>Update</a>
+    </td>
+</tr>
+
+</table>
+</div>
+
+
+<div class="footer">
+    <span> This Project is for educational purposes only. All rights reserved!</span>
+  </div>
+  {% endblock %}

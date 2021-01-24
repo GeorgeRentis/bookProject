@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid add-book">
+    <h2>Edit Book Details</h2>
+    <form method ="POST">
+        {{template_form.hidden_tag()}}
+        <div class="form-group">
+            <p>
+            {{ template_form.title.label}}
+            {{ template_form.title(class_="form-control",value=book.title)}}
+        </p>
+        </div>
+        <div class="form-group">
+            <p>
+            {{ template_form.author.label}}
+            {{ template_form.author(class_="form-control",value=book.author)}}
+        </p>
+        </div>
+            {{ template_form.submit()}}
+         
+    </form>
+</div>
+  {% endblock %}

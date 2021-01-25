@@ -10,7 +10,16 @@
           <a class="nav-link active" href="{{url_for('index')}}" id="item">Home</a>
           <a class="nav-link" href="{{url_for('books')}}" id="item">All Books</a>
           <a class="nav-link" href="{{url_for('add_book')}}" id="item">Add Book</a>
-          <a class="nav-link" href="#" id="item">Log In</a>
+
+          {% if current_user %}
+          <a class="nav-link" href="{{url_for('add_book')}}" id="item">{{current_user.email}}</a>
+          
+          {% else %}
+          
+          <a class="nav-link" href="{{url_for('register')}}" id="item">Register</a>
+          <a class="nav-link" href="{{url_for('login')}}" id="item">Log In</a>
+
+          {% endif %}
         </div>
       </div>
     </div>

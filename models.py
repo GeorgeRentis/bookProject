@@ -1,6 +1,7 @@
 from app import app,db
 from flask_login import UserMixin
 from datetime import datetime
+from werkzeug.security import generate_password_hash,check_password_hash
 
 # In this file we are going to create the models and their fields that the application will be using.
 
@@ -16,7 +17,7 @@ class Book(db.Model):
 
 # This is the User Model that will be used for the application.
 
-class User(UserMixin,db.Model,):
+class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(120),index=True,unique=True)
     email = db.Column(db.String(120),index=True,unique=True)
@@ -25,3 +26,11 @@ class User(UserMixin,db.Model,):
 
     def __repr__(self):
         return "Welcome {}!".format(self.username)
+    
+# Encoding the password into a hash using the generate_password_hash method.
+
+    def encode_password(self,password):
+        self.password_hash = generate_password_hash(password)
+    
+    def decode_password(self,password):
+        return check_password_hash(self.password_hash,password)

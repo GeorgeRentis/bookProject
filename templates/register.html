@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid add-book">
+    <h2>User Register</h2>
+    <form method ="POST">
+        {{template_form.hidden_tag()}}
+        <div class="form-group">
+            <p>
+                {{ template_form.username.label}}
+                {{ template_form.username(class_="form-control",placeholder_="Please enter a username")}}
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                {{ template_form.email.label}}
+                {{ template_form.email(class_="form-control",placeholder_="Please enter an email")}}
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                {{ template_form.password.label}}
+                {{ template_form.password(class_="form-control",placeholder_="Please enter a Password")}}
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                {{ template_form.password2.label}}
+                {{ template_form.password2(class_="form-control",placeholder_="Please repeat the password")}}
+            </p>
+        </div>
+        {{ template_form.submit(class_="btn btn-primary")}}         
+    </form>
+</div>
+{% endblock %}

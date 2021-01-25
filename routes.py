@@ -4,13 +4,23 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from flask_sqlalchemy import SQLAlchemy
 from models import Book,User
+from flask_login import UserMixin, LoginManager, login_required, login_user, current_user
 import forms
 
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 @app.route('/')
 def index():
-    return render_template('index.html')
-
+    if current_user:
+        return render_template('index.html', current_user = current_user)
+    else:
+        return render_template('index.html')
 
 @app.route('/books',methods=["GET","POST"])
 def books():
@@ -51,6 +61,30 @@ def update(book_id):
     if bookform.validate_on_submit():
         book.title = bookform.title.data
         book.author = bookform.author.data
-        db.session.commit()
-        
+        db.session.commit()      
     return render_template('book_update.html',template_form = bookform,book = book)
+
+@app.route('/register',methods=["GET","POST"])
+def register():
+    userform = forms.UserForm()
+    if userform.validate_on_submit():
+        new_user = User(username=userform.username.data,email=userform.email.data)
+        new_user.encode_password(userform.password.data)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for("index", _external=True, _scheme='http'))
+    return render_template ('register.html',template_form = userform)
+
+@app.route('/login',methods=["GET","POST"])
+def login():
+    userform = forms.LogInForm()
+    if userform.validate_on_submit():
+        user = User.query.filter_by(email = userform.email.data).first()
+        if user and user.decode_password(userform.password.data):
+            login_user(user)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('index', _external=True, _scheme='http'))
+        else:
+            return redirect(url_for('login', _external=True, _scheme='http'))
+    return render_template('login.html', template_form=userform)
+   

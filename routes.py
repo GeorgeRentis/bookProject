@@ -41,6 +41,7 @@ def add_book():
         new_book = Book(title = bookform.title.data, author = bookform.author.data, rating = int(bookform.rating.data), genre = (bookform.genre.data))
         db.session.add(new_book)
         db.session.commit()
+        flash('You successfully added a book','error')
         return redirect(url_for("books", _external=True, _scheme='http'))
     return render_template('add_book.html',template_form = bookform)
 
@@ -95,4 +96,5 @@ def login():
 @login_required
 def logout():
     logout_user()
+    flash('You were successfully logged out','error')
     return redirect(url_for('index'))

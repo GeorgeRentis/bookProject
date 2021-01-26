@@ -4,8 +4,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from flask_sqlalchemy import SQLAlchemy
 from models import Book,User
-from flask_login import UserMixin, LoginManager, login_required, login_user, current_user
+from flask_login import UserMixin, LoginManager, login_required, login_user, current_user,logout_user
 import forms
+import sys
 
 
 login_manager = LoginManager()
@@ -15,12 +16,12 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@app.route('/')
+@app.route('/',methods=['GET', 'POST'])
 def index():
-    if current_user:
+    if current_user.is_authenticated:
+        # print(current_user.username, file=sys.stdout)
         return render_template('index.html', current_user = current_user)
-    else:
-        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/books',methods=["GET","POST"])
 def books():
@@ -83,8 +84,15 @@ def login():
         if user and user.decode_password(userform.password.data):
             login_user(user)
             next_page = request.args.get('next')
+            flash('You were successfully logged in','error')
             return redirect(next_page) if next_page else redirect(url_for('index', _external=True, _scheme='http'))
         else:
             return redirect(url_for('login', _external=True, _scheme='http'))
     return render_template('login.html', template_form=userform)
    
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))

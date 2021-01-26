@@ -32,10 +32,18 @@ body{
 
 #my_nav{
   background-color:#302F59;
+  padding: 0;
 }
 
 #item{
   color:#FFFF;
+  font-size: 15px;
+  padding:15px;
+}
+
+#item:hover{
+  background-color:#E6E6F8;
+  color:black;
 }
 #brand{
   color:#ADD8E6
@@ -98,11 +106,17 @@ th,td{
   border:0px;
 }
 
-.book-list-header a,h1{
+.book-list-header{
   display:inline-block;
+}
+
+.book-list-title{
+  display:inline-block;
+
 }
 
 .book-list-header a{
   margin-bottom: .5rem;
   margin-left:10px;
 }
+

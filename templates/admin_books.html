@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row admin-menu">
+        <div class="col-sm-4" >
+          <h5>Your profile</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+            <li><a href="#" class="profile_links">Account Settings</a></li>
+          </ul>
+    
+          <h5>Book List</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+              <li> <a href="#">View all books</a>
+              </li>
+          </ul>
+    
+          <h5>User List</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+              <li> <a href="#">View all users</a>
+              </li>
+            <li><a href="#">Add new user</a>
+            </li>
+          </ul>
+    </div>
+    <div class="col-sm-8 ">
+        <div class="book-list-header">
+          <h1 class="book-list-title">Book Catalogue</h1>
+          {% if prev_url %}
+            <a href="{{ prev_url }}" class="btn btn-primary book-button">Previous Books</a>
+          {% endif %}
+          {% if next_url %}
+            <a href="{{ next_url }}" class="btn btn-primary book-button">Next Books</a>
+          {% endif %}
+        </div>
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Genre</th>
+                  <th scope="col">Added By</th>
+                  <th scope ="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for book in book_list %}
+                <tr>
+                  <td>{{book.title}}</td>
+                  <td>{{book.author}}</td>
+                  <td>{{book.genre}}</td>
+                  <td> {{book.username}}</td>
+                  <td> <a class="btn btn-primary" id= "admin-option-btn" href="{{url_for('admin_update',book_id=book.id)}}">Edit</a>
+                    <a class="btn btn-danger" id="admin-option-btn" href="#">Delete</a>
+                </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+    
+    
+      </div>
+      </div>
+      </div>
+
+    {% endblock %}

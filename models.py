@@ -11,6 +11,8 @@ class Book(db.Model):
     author = db.Column(db.String(40),index=True,unique = False)
     rating = db.Column(db.Integer, index = True,unique = False)
     genre = db.Column(db.Integer, index= True, unique = False)
+    review = db.Column(db.String(120), index=True, unique= False)
+    username = db.Column(db.String(120), index = True, unique=False)
     
     def __repr__(self):
         return "{} by {}".format(self.title,self.author)
@@ -22,6 +24,7 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(120),index=True,unique=True)
     email = db.Column(db.String(120),index=True,unique=True)
     password_hash = db.Column(db.String(120))
+    is_admin = db.Column(db.Boolean,index=False,default=False)
     joined_at = db.Column(db.DateTime(),index=True,default = datetime.utcnow)
 
     def __repr__(self):

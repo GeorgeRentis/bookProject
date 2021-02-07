@@ -2,11 +2,36 @@
 
 
 {% block content %}
-<div class="banner">
-    <h1>Welcome to my first personal project</h1>
-    <span>This project will be a library simulation where each customer should be able to
-        add books and keep track of their personal library.
-    </span>
+<div class="header container-fluid">
+    <div class="header-text">
+        <p class="header-message">Love For Books</p>
+        <p class="sub-message">Create your own digital library!</p>
+        {% if current_user.is_authenticated == False %}
+            <a class="header-button btn-primary" href="#">Get Started!</a>
+        {% endif %}
+    </div>
 </div>
+    <div class="banner container-fluid">
+        <h3>Project Details</h3>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="https://images.pexels.com/photos/3457273/pexels-photo-3457273.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"/>
+                <br>
+                <h3> Create a digital library from your own book collection!</h3>
+            </div>
+            <div class="col-sm-4">
+                <img src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                <br>
+                <h3> Register free and easy by the click of a button!</h3>
+            </div>
+            <div class="col-sm-4">
+                <img src="https://images.pexels.com/photos/1458669/pexels-photo-1458669.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                <br>
+                <h3> Update your existing libary any time - any place.</h3>
+            </div>
+        </div>
+    </div>
+
+ 
 
 {% endblock %}

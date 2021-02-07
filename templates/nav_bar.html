@@ -1,15 +1,26 @@
-
 <nav class="navbar navbar-expand-lg navbar-light" id="my_nav">
   <div class="container-fluid">
-      <a class="navbar-brand" href="{{url_for('index')}}" id="brand">Books Project</a>
+      <a class="navbar-brand" href="{{url_for('index')}}" id="brand">Books Project <i class="fas fa-book-open"></i>
+
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li><a class="nav-link active" href="{{url_for('index')}}" id="item">Home</a></li>
-          <li> <a class="nav-link" href="{{url_for('books')}}" id="item">All Books</a></li>
-          <li> <a class="nav-link" href="{{url_for('add_book')}}" id="item">Add Book</a></li>
+          <li> <a class="nav-link" href="{{url_for('books')}}" id="item">Admin's Books</a></li>
+          {% if current_user.is_authenticated %}
+            <li> <a class="nav-link" href="{{url_for('add_book')}}" id="item">Add Book</a></li>
+            <li> <a class="nav-link" href="{{url_for('user_books')}}" id="item">My Books</a></li>
+            li> <a class="nav-link" href="#" id="item">My Profile</a></li>
+          {% endif %}
+
+          {% if current_user.is_authenticated and current_user.is_admin == True %}
+            <li> <a class="nav-link" href="{{url_for('admin')}}" id="item">Admin Profile</a></li>
+          {% endif %}
+
+
         </ul>
       </div>
       <div class ="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -17,16 +28,13 @@
           {% if current_user.is_authenticated %}
             <li>  <a class="nav-link " href="{{url_for('logout')}}" id="item">{{current_user.email}} - Log out</a></li>
           {% else %}
-
-          <li> <a class="nav-link" href="{{url_for('register')}}" id="item">Register</a></li>
-          <li> <a class="nav-link" href="{{url_for('login')}}" id="item">Log In</a></li>
-
+            <li> <a class="nav-link" href="{{url_for('login')}}" id="item">Log In</a></li>
           {% endif %}
         </ul>
       </div>
     </div>
   </nav>
-  
+
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category,message in messages %}
@@ -38,8 +46,38 @@
   {% block content %}
 
   {% endblock %}
+  <div class="info container-fluid">
+    <div class="row info-row">
 
-  
-    <div class="footer">
-      <span> This Project is for educational purposes only. All rights reserved!</span>
+
+        <div class = "col-sm-4 finfo">
+            <h4>Contact me</h4>
+            <ul>
+                <li>George Rentis</li>
+                <li>Piraeus, Greece</li>
+                <li>Phone:6945613919</li>
+                <li>E-mail:georent123@hotmail.com</li>
+            </ul>
+            
+        </div>
+
+        <div class = "col-sm-4 finfo">
+            <h4>Follow me</h4>
+            <ul>
+                <li><a href="https://www.facebook.com/george.rent.102/"> Facebook  <i class="fab fa-facebook"></i></a></li>
+                <li><a href="https://gr.linkedin.com/in/george-rentis-143bb2114"> Linkedin  <i class="fab fa-linkedin"></i></a></li>
+            </ul>
+            
+        </div>
+
+        <div class = "col-sm-4 finfo">
+            <h4>Special Thanks</h4>
+            <ul>
+                <li>Design from <a href="https://www.graphberry.com/"> Graphberry </a></li>
+            </ul>
+        </div>
     </div>
+</div>
+<div class="footer container-fluid">
+    <span>This creation is for educational purposes only. All rights Reserved!</span>
+</div>

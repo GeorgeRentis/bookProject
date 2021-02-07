@@ -2,20 +2,21 @@
 
 <!-- This is the Form that we use in order to add books to our database. -->
 {% block content %}
-    <div class="container-fluid add-book">
+    <div class="container-fluid add-book-container">
+        <div class= "add-book" id="add-book">
         <h2>Add a new book</h2>
         <form method ="POST">
             {{template_form.hidden_tag()}}
             <div class="form-group">
                 <p>
                     {{ template_form.title.label}}
-                    {{ template_form.title(class_="form-control")}}
+                    {{ template_form.title(class_="form-control",placeholder="EG. The fellowship of the ring")}}
                 </p>
             </div>
             <div class="form-group">
                 <p>
                     {{ template_form.author.label}}
-                    {{ template_form.author(class_="form-control")}}
+                    {{ template_form.author(class_="form-control",placeholder="EG. J.R.R. Tolkien")}}
                 </p>
             </div>
             <div class="form-group">
@@ -30,7 +31,15 @@
                     {{ template_form.genre(class_="rating-button")}}
                 </p>
             </div>
-            {{ template_form.submit(class_="btn btn-primary")}}         
+
+            <div class="form-group">
+                <p>
+                    {{ template_form.review.label}}
+                    {{ template_form.review(class_="form-control",placeholder="EG. The book was amazing because....")}}
+                </p>
+            </div>
+            {{ template_form.submit(class_="btn btn-primary submit-btn")}}         
         </form>
+        </div>
     </div>
 {% endblock %}

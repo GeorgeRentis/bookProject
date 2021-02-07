@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container-fluid add-book">
+<div class="container-fluid add-book" id="add-book">
     <h2>User Register</h2>
     <form method ="POST">
         {{template_form.hidden_tag()}}
@@ -28,7 +28,7 @@
                 {{ template_form.password2(class_="form-control",placeholder_="Please repeat the password")}}
             </p>
         </div>
-        {{ template_form.submit(class_="btn btn-primary")}}         
+        {{ template_form.submit(class_="btn btn-primary submit-btn")}}         
     </form>
 </div>
 {% endblock %}

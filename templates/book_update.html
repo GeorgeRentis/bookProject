@@ -1,24 +1,76 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<div class="container-fluid add-book">
-    <h2>Edit Book Details</h2>
-    <form method ="POST">
-        {{template_form.hidden_tag()}}
-        <div class="form-group">
-            <p>
-            {{ template_form.title.label}}
-            {{ template_form.title(class_="form-control",value=book.title)}}
-        </p>
-        </div>
-        <div class="form-group">
-            <p>
-            {{ template_form.author.label}}
-            {{ template_form.author(class_="form-control",value=book.author)}}
-        </p>
-        </div>
-            {{ template_form.submit()}}
-         
-    </form>
-</div>
-  {% endblock %}
+<div class="container-fluid">
+    <div class="row admin-menu">
+        <div class="col-sm-4" >
+          <h5>Your profile</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+            <li><a href="#" class="profile_links">Account Settings</a></li>
+          </ul>
+    
+          <h5>Book List</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+              <li> <a href="{{url_for('admin_books')}}">View all books</a>
+              </li>
+          </ul>
+    
+          <h5>User List</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+              <li> <a href="#">View all users</a>
+              </li>
+            <li><a href="#">Add new user</a>
+            </li>
+          </ul>
+    </div>
+
+
+    <div class="col-sm-8">
+        <h2>Update Book</h2>
+        <form method ="POST">
+            {{template_form.hidden_tag()}}
+            <div class="form-group">
+                <p>
+                    {{ template_form.title.label}}
+                    {{ template_form.title(class_="form-control",value=book.title)}}
+                </p>
+            </div>
+            <div class="form-group">
+                <p>
+                    {{ template_form.author.label}}
+                    {{ template_form.author(class_="form-control",value=book.author)}}
+                </p>
+            </div>
+            <div class="form-group">
+                <p>
+                    {{ template_form.rating.label}}
+                    {{ template_form.rating(class_="rating-button", value = book.rating)}}
+                </p>
+            </div>
+            <div class="form-group">
+                <p>
+                    {{ template_form.genre.label}}
+                    {{ template_form.genre(class_="rating-button", value = book.genre)}}
+                </p>
+            </div>
+
+            <div class="form-group">
+                <p>
+                    {{ template_form.review.label}}
+                    {{ template_form.review(class_="form-control",value = book.review)}}
+                </p>
+            </div>
+            {{ template_form.submit(class_="btn btn-primary submit-btn")}}         
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

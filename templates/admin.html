@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row admin-menu">
+        <div class="col-sm-4" >
+          <h5>Your profile</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+            <li><a href="#" class="profile_links">Account Settings</a></li>
+          </ul>
+    
+          <h5>Book List</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+              <li> <a href="{{url_for('admin_books')}}">View all books</a>
+              </li>
+          </ul>
+    
+          <h5>User List</h5>
+          <ul class="list-unstyled" style="  border-top: 1px solid lightgray;  line-height: 36px;">
+              <li> <a href="#">View all users</a>
+              </li>
+            <li><a href="#">Add new user</a>
+            </li>
+          </ul>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="statistics">
+            <h4>App Statistics</h4>
+            <table class="table">
+                <tr>
+                    <td>Total Users</td>
+                    <td>{{total_users}}</td>
+                </tr>
+                <tr>
+                    <td>Total Books</td>
+                    <td> {{total_books}}</td>
+                </tr>
+            </table>
+                    <h4>Book Ratings</h4>
+                    <table class="table">
+                      <tr>
+                        <td>Terrible</td>
+                        <td>{{terrible_books}}</td>
+                      </tr>
+                      <tr>
+                        <td>Poor</td>
+                        <td>{{poor_books}}</td>
+                      </tr>
+                      <tr>
+                          <td>Decent</td>
+                          <td>{{decent_books}}</td>
+                        </tr>
+                        <tr>
+                          <td>Very Good</td>
+                          <td>{{very_good_books}}</td>
+                        </tr>
+                        <tr>
+                            <td>Amazing</td>
+                          <td> {{amazing_books}}</td>
+                        </tr>
+                    </table>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="statistics">
+            <h4>Books Statistics</h4>
+            <table class="table">
+                <tr>
+                    <td>Romance</td>
+                    <td>{{romance_books}}</td>
+                </tr>
+                 <tr>
+                    <td>Horror</td>
+                    <td>{{horror_books}}</td>
+                </tr>
+                <tr>
+                    <td>Mystery</td>
+                    <td>{{mystery_books}}</td>
+                </tr>
+                <tr>
+                    <td>Literature</td>
+                    <td>{{literature_books}}</td>
+                </tr>
+                <tr>
+                    <td>Fantasy</td>
+                    <td>{{fantasy_books}}</td>
+                </tr>
+                <tr>
+                    <td>Graphic Novels</td>
+                    <td>{{garphic_novel_books}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>   
+
+</div>
+</div>
+{% endblock %}
